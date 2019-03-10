@@ -41,7 +41,7 @@
                 </div>
 
                 <span>
-                    <a href="#" class="btn btn-info">
+                    <a href="{{ route('temporadas_da_serie', $serie->id) }}" class="btn btn-info">
                         <i class="fas fa-external-link-alt"></i>
                     </a>
                     <button type="button" class="btn btn-info" onclick="toggleInput({{ $serie->id }})">
