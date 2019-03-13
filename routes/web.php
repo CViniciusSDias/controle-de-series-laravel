@@ -22,3 +22,5 @@ Route::post('/adicionar-serie', 'SeriesController@save')->name('salvar_serie');
 Route::post('/alterar-nome-serie/{id}', 'SeriesController@changeName');
 
 Route::get('/series/{id}/temporadas', 'TemporadasController@all')->name('temporadas_da_serie');
+Route::get('/temporadas/{temporadaId}/episodios', 'EpisodiosController@all')->name('episodios_da_temporada');
+Route::post('/temporadas/{temporadaId}/assistir-episodios', 'EpisodiosController@assistir')->name('assistir_episodios');

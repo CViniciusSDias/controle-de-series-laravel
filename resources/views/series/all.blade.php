@@ -8,7 +8,7 @@
 @section('titulo')Lista de séries @endsection
 
 @section('body')
-    <div class="container">
+    <div class="container mb-2">
         <div class="jumbotron">
             <h1>Séries</h1>
         </div>
