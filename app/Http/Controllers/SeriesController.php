@@ -25,7 +25,7 @@ class SeriesController extends Controller
 
     public function save(CriarSerieRequest $request, SerieCreator $criadorDeSerie)
     {
-        $criadorDeSerie->criarSerieComTemporadas($request);
+        $criadorDeSerie->criarSerieComTemporadas($request->nome, $request->qtd_temporadas, $request->ep_por_temporada);
 
         $request->session()->flash('mensagem.sucesso', 'Série com suas respectivas temporadas e episódios adicionada.');
         return redirect()->route('listar_series');

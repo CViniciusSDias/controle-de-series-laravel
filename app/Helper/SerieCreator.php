@@ -9,25 +9,20 @@ use Illuminate\Support\Facades\DB;
 
 class SerieCreator
 {
-    public function criarSerieComTemporadas(CriarSerieRequest $request)
+    public function criarSerieComTemporadas(string $nomeSerie, int $qtdTemporadas, ?int $epPorTemporada)
     {
-        DB::transaction(function () use ($request) {
+        DB::transaction(function () use ($nomeSerie, $qtdTemporadas, $epPorTemporada) {
             /** @var Serie $serie */
-            $serie = Serie::create(['nome' => $request->nome]);
-            $episodiosPorTemporada = $request->ep_por_temporada ?? 0;
+            $serie = Serie::create(['nome' => $nomeSerie]);
+            $episodiosPorTemporada = $epPorTemporada ?? 0;
 
-            $this->criarTemporadas($request, $serie, $episodiosPorTemporada);
+            $this->criarTemporadas($qtdTemporadas, $serie, $episodiosPorTemporada);
         });
     }
 
-    /**
-     * @param CriarSerieRequest $request
-     * @param Serie $serie
-     * @param int $episodiosPorTemporada
-     */
-    private function criarTemporadas(CriarSerieRequest $request, Serie $serie, int $episodiosPorTemporada): void
+    private function criarTemporadas(int $qtdTemporadas, Serie $serie, int $episodiosPorTemporada): void
     {
-        for ($i = 1; $i <= $request->qtd_temporadas; $i++) {
+        for ($i = 1; $i <= $qtdTemporadas; $i++) {
             /** @var Temporada $temporada */
             $temporada = $serie->temporadas()->create(['numero' => $i]);
 
@@ -35,10 +30,6 @@ class SerieCreator
         }
     }
 
-    /**
-     * @param int $qtdEpisodios
-     * @param Temporada $temporada
-     */
     private function criarEpisodios(int $qtdEpisodios, Temporada $temporada): void
     {
         for ($j = 1; $j <= $qtdEpisodios; $j++) {
