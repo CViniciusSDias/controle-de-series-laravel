@@ -3,7 +3,7 @@
         Home
     </a>
     @auth
-    <a href="{{ route('logout') }}">
+    <a href="{{ route('sair') }}">
         Sair
     </a>
     @endauth

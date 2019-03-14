@@ -44,7 +44,7 @@ Route::post('/novo-usuario', 'RegistrarController@store');
 Route::get('/sair', function () {
     \Illuminate\Support\Facades\Auth::logout();
     return redirect()->route('entrar');
-})->name('logout');
+})->name('sair');
 
 
 Auth::routes();
