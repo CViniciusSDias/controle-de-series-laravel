@@ -17,19 +17,22 @@ Route::get('/', function () {
 
 Route::get('/series', 'SeriesController@all')->name('listar_series');
 Route::get('/remover-serie/{id}', 'SeriesController@destroy')->name('remover_serie');
-Route::get('/adicionar-serie', 'SeriesController@create')->name('adicionar_serie');
+Route::get('/adicionar-serie', 'SeriesController@create')->name('adicionar_serie')->middleware('autenticador');
 Route::post('/adicionar-serie', 'SeriesController@save')->name('salvar_serie');
 Route::post('/alterar-nome-serie/{id}', 'SeriesController@changeName');
 
 Route::get('/series/{id}/temporadas', 'TemporadasController@all')->name('temporadas_da_serie');
 Route::get('/temporadas/{temporadaId}/episodios', 'EpisodiosController@all')->name('episodios_da_temporada');
-Route::post('/temporadas/{temporadaId}/assistir-episodios', 'EpisodiosController@assistir')->name('assistir_episodios');
+Route::post('/temporadas/{temporadaId}/assistir-episodios', 'EpisodiosController@assistir')->name('assistir_episodios')->middleware('autenticador');
 
 Route::get('/entrar', 'EntrarController@form')->name('entrar');
 Route::post('/entrar', 'EntrarController@entrar');
 Route::get('/novo-usuario', 'RegistrarController@create')->name('novo_usuario');
 Route::post('/novo-usuario', 'RegistrarController@store');
-Route::get('/logout', function () {
+Route::get('/sair', function () {
     \Illuminate\Support\Facades\Auth::logout();
     return redirect()->route('entrar');
 })->name('logout');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
