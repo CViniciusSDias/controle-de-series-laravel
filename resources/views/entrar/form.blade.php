@@ -6,6 +6,8 @@
     <div class="container">
         <h1 class="text-center">Entrar</h1>
 
+        @include('errors')
+
         <form method="post">
             @csrf
             <div class="form-group">

@@ -29,9 +29,11 @@
                         <span class="d-flex justify-content-between align-items-center">
                             Episódio {{ $episodio->numero }}
 
+                            @auth
                             <span>
                                 <input type="checkbox" aria-label="Marcar como assistido" name="episodio[{{ $episodio->id }}][assitido]" {{ $episodio->assistido == 1 ? 'checked' : '' }}>
                             </span>
+                            @endauth
                         </span>
                     </li>
                 @endforeach

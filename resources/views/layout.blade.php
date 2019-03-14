@@ -11,9 +11,7 @@
     @show
 </head>
 <body>
-    @auth
-        @include('home-button')
-    @endauth
+    @include('home-button')
 
     @yield('body')
     @yield('js')

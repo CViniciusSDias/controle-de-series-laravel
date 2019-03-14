@@ -2,7 +2,14 @@
     <a class="navbar-brand" href="{{ route('listar_series') }}">
         Home
     </a>
+    @auth
     <a href="{{ route('logout') }}">
         Sair
     </a>
+    @endauth
+    @guest
+    <a href="{{ route('entrar') }}">
+        Entrar
+    </a>
+    @endguest
 </nav>

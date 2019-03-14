@@ -15,7 +15,9 @@ class EntrarController extends Controller
     public function entrar(Request $request)
     {
         if (!Auth::attempt($request->only(['email', 'password']))) {
-            return 'erro ao entrar';
+            return redirect()
+                ->back()
+                ->withErrors('Erro ao se autenticar');
         }
 
         return redirect()->route('listar_series');

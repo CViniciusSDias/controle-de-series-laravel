@@ -44,12 +44,14 @@
                     <a href="{{ route('temporadas_da_serie', $serie->id) }}" class="btn btn-info">
                         <i class="fas fa-external-link-alt"></i>
                     </a>
+                    @auth
                     <button type="button" class="btn btn-info" onclick="toggleInput({{ $serie->id }})">
                         <i class="fas fa-edit"></i>
                     </button>
                     <button onclick="excluirSerie('{{ addslashes($serie->nome) }}', '{{ route('remover_serie', $serie->id) }}')" class="btn btn-danger">
                         <i class="fas fa-trash-alt"></i>
                     </button>
+                    @endauth
                 </span>
             </li>
             @endforeach
