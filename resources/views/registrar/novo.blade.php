@@ -1,13 +1,18 @@
 @extends('layout')
 
-@section('titulo')Entrar @endsection
+@section('titulo')Registrar @endsection
 
 @section('body')
     <div class="container">
-        <h1 class="text-center">Entrar</h1>
+        <h1 class="text-center">Novo Usuário</h1>
 
         <form method="post">
             @csrf
+            <div class="form-group">
+                <label for="name">Nome</label>
+                <input type="text" name="name" id="name" required class="form-control">
+            </div>
+
             <div class="form-group">
                 <label for="email">E-mail</label>
                 <input type="email" name="email" id="email" required class="form-control">
@@ -21,10 +26,6 @@
             <button type="submit" class="btn btn-primary mt-3">
                 Entrar
             </button>
-
-            <a href="{{ route('novo_usuario') }}" class="btn btn-secondary mt-3">
-                Registrar-se
-            </a>
         </form>
     </div>
 

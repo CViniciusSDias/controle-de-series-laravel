@@ -13,8 +13,6 @@
             <h1>Temporadas</h1>
         </div>
 
-        @include('home-button')
-
         @if(!empty($mensagem))
             <div class="alert alert-success">
                 {{ $mensagem }}

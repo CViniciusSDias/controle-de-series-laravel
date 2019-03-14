@@ -25,5 +25,11 @@ Route::get('/series/{id}/temporadas', 'TemporadasController@all')->name('tempora
 Route::get('/temporadas/{temporadaId}/episodios', 'EpisodiosController@all')->name('episodios_da_temporada');
 Route::post('/temporadas/{temporadaId}/assistir-episodios', 'EpisodiosController@assistir')->name('assistir_episodios');
 
-Route::get('/entrar', 'EntrarController@form')->name('form_entrar');
-Route::post('/entrar', 'EntrarController@entrar')->name('fazer_login');
+Route::get('/entrar', 'EntrarController@form')->name('entrar');
+Route::post('/entrar', 'EntrarController@entrar');
+Route::get('/novo-usuario', 'RegistrarController@create')->name('novo_usuario');
+Route::post('/novo-usuario', 'RegistrarController@store');
+Route::get('/logout', function () {
+    \Illuminate\Support\Facades\Auth::logout();
+    return redirect()->route('entrar');
+})->name('logout');
