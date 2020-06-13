@@ -3,6 +3,7 @@
 namespace Tests\Browser;
 
 use App\User;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\DuskTestCase;
 use Laravel\Dusk\Browser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;

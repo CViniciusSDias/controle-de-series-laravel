@@ -20,7 +20,9 @@ class AdicionarSeriePageTest extends TestCase
     public function testUsuarioLogadoDeveAcessarAPaginaComSucesso()
     {
         $usuarioLogado = factory(User::class)->create();
-        $response = $this->actingAs($usuarioLogado)->get('/adicionar-serie');
+        $response = $this
+            ->actingAs($usuarioLogado)
+            ->get('/adicionar-serie');
 
         $response->assertStatus(200);
     }

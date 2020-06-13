@@ -41,6 +41,7 @@ class SeriesController extends Controller
 
     public function changeName(int $serieId, Request $request)
     {
+        sleep(5);
         /** @var Serie $serie */
         $serie = Serie::find($serieId);
         $serie->nome = $request->nome;

@@ -13,9 +13,19 @@
         <form method="post">
             @csrf
             <div class="row">
-                <div class="col col-8">
+                <div class="col col-4">
                     <label for="nome">Nome</label>
                     <input type="text" name="nome" id="nome" required class="form-control">
+                </div>
+
+                <div class="col col-4">
+                    <label for="genre">Gênero</label>
+                    <select id="genre" name="genre" required class="form-control">
+                        <option value="">Selecione</option>
+                        <option value="drama">Drama</option>
+                        <option value="acao">Ação</option>
+                        <option value="comedia">Comédia</option>
+                    </select>
                 </div>
 
                 <div class="col col-2">
