@@ -13,33 +13,34 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\{SeriesController, TemporadasController, EpisodiosController, EntrarController, RegistrarController, HomeController};
 
 Route::get('/', function () {
     return redirect('/series');
 });
 
-Route::get('/series', 'SeriesController@all')
+Route::get('/series', [SeriesController::class, 'all'])
     ->name('listar_series');
-Route::get('/remover-serie/{id}', 'SeriesController@destroy')
+Route::get('/remover-serie/{id}', [SeriesController::class, 'destroy'])
     ->name('remover_serie');
-Route::get('/adicionar-serie', 'SeriesController@create')
+Route::get('/adicionar-serie', [SeriesController::class, 'create'])
     ->name('adicionar_serie')
     ->middleware('autenticador');
-Route::post('/adicionar-serie', 'SeriesController@save');
-Route::post('/alterar-nome-serie/{id}', 'SeriesController@changeName');
+Route::post('/adicionar-serie', [SeriesController::class, 'save']);
+Route::post('/alterar-nome-serie/{id}', [SeriesController::class, 'changeName']);
 
-Route::get('/series/{id}/temporadas', 'TemporadasController@all')->name('temporadas_da_serie');
-Route::get('/temporadas/{temporadaId}/episodios', 'EpisodiosController@all')->name('episodios_da_temporada');
-Route::post('/temporadas/{temporadaId}/assistir-episodios', 'EpisodiosController@assistir')
+Route::get('/series/{id}/temporadas', [TemporadasController::class, 'all'])->name('temporadas_da_serie');
+Route::get('/temporadas/{temporadaId}/episodios', [EpisodiosController::class, 'all'])->name('episodios_da_temporada');
+Route::post('/temporadas/{temporadaId}/assistir-episodios', [EpisodiosController::class, 'assistir'])
     ->name('assistir_episodios')
     ->middleware('autenticador');
 
-Route::get('/entrar', 'EntrarController@form')
+Route::get('/entrar', [EntrarController::class, 'form'])
     ->name('entrar');
-Route::post('/entrar', 'EntrarController@entrar');
-Route::get('/novo-usuario', 'RegistrarController@create')
+Route::post('/entrar', [EntrarController::class, 'entrar']);
+Route::get('/novo-usuario', [RegistrarController::class, 'create'])
     ->name('novo_usuario');
-Route::post('/novo-usuario', 'RegistrarController@store');
+Route::post('/novo-usuario', [RegistrarController::class, 'store']);
 
 Route::get('/sair', function () {
     \Illuminate\Support\Facades\Auth::logout();
@@ -49,4 +50,4 @@ Route::get('/sair', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
